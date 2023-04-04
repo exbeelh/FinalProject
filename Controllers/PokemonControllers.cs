@@ -180,6 +180,7 @@ class PokemonController
             }
 
             Console.WriteLine("Data has been updated.");
+            Console.ReadKey();
 
             _repository.UpdateData(pokemon);
         }
