@@ -22,10 +22,12 @@ class PokemonView
             Console.WriteLine("=================== Pokedex =====================");
             Console.WriteLine("=================================================");
             Console.WriteLine("1. Add pokemon to database.");
-            Console.WriteLine("2. Show all pokemon data.");
-            Console.WriteLine("3. Update pokemon.");
-            Console.WriteLine("4. Delete pokemon.");
-            Console.WriteLine("5. Exit\n");
+            Console.WriteLine("2. Show all pokemon.");
+            Console.WriteLine("3. Show all element.");
+            Console.WriteLine("4. Show all abilities.");
+            Console.WriteLine("5. Update pokemon.");
+            Console.WriteLine("6. Delete pokemon.");
+            Console.WriteLine("7. Exit\n");
             Console.Write("Input > ");
             menu = int.Parse(Console.ReadLine());
 
@@ -38,12 +40,18 @@ class PokemonView
                     ShowData();
                     break;
                 case 3:
-                    controller.UpdatePokemon();
-                    break;
+                    ShowElement();
+                    break; 
                 case 4:
-                    controller.DeletePokemon();
+                    ShowAbilities();
                     break;
                 case 5:
+                    controller.UpdatePokemon();
+                    break;
+                case 6:
+                    controller.DeletePokemon();
+                    break;
+                case 7:
                     Console.Clear();
                     Console.WriteLine("Pokedex has been shutdown ....");
                     Environment.Exit(1);
@@ -65,6 +73,42 @@ class PokemonView
         Console.Clear();
         Console.WriteLine("=================================================");
         Console.WriteLine("=============== Show All Pokemon ================");
+        Console.WriteLine("=================================================\n");
+
+        controller.ShowDatabase();
+
+        Console.WriteLine("\n\n");
+        Console.WriteLine("Press any key to back to main menu ...");
+        Console.ReadKey();
+        MainMenu();
+    }
+
+    public void ShowElement()
+    {
+        var repository = new ElementRepo(connectionString);
+        var controller = new ElementController(repository);
+
+        Console.Clear();
+        Console.WriteLine("=================================================");
+        Console.WriteLine("=============== Show All Element ================");
+        Console.WriteLine("=================================================\n");
+
+        controller.ShowDatabase();
+
+        Console.WriteLine("\n\n");
+        Console.WriteLine("Press any key to back to main menu ...");
+        Console.ReadKey();
+        MainMenu();
+    }
+
+    public void ShowAbilities()
+    {
+        var repository = new AbilitiesRepository(connectionString);
+        var controller = new AbilitiesController(repository);
+
+        Console.Clear();
+        Console.WriteLine("=================================================");
+        Console.WriteLine("=============== Show All Element ================");
         Console.WriteLine("=================================================\n");
 
         controller.ShowDatabase();
