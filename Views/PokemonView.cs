@@ -11,7 +11,7 @@ class PokemonView
                                        "Database=db_pokemon";
     public void MainMenu()
     {
-        var repository = new PokemonRepositories(connectionString);
+        var repository = new PokemonRepository(connectionString);
         var controller = new PokemonController(repository);
 
         int menu;
@@ -67,7 +67,7 @@ class PokemonView
 
     public void ShowData()
     {
-        var repository = new PokemonRepositories(connectionString);
+        var repository = new PokemonRepository(connectionString);
         var controller = new PokemonController(repository);
 
         Console.Clear();
@@ -75,7 +75,24 @@ class PokemonView
         Console.WriteLine("=============== Show All Pokemon ================");
         Console.WriteLine("=================================================\n");
 
-        controller.ShowDatabase();
+        var pokemon = controller.ShowDatabase();
+
+        foreach (var item in pokemon)
+        {
+            Console.WriteLine("ID          : " + item.Id);
+            Console.WriteLine("Name        : " + item.Name);
+            Console.WriteLine("Height      : " + item.Height + "\"");
+            Console.WriteLine("Weight      : " + item.Weight + " lbs");
+            Console.WriteLine("Element     : " + item.Element);
+            Console.WriteLine("Abilities   : " + item.Abilities);
+            Console.WriteLine("HP          : " + item.Hp);
+            Console.WriteLine("Attack      : " + item.AttackPoint);
+            Console.WriteLine("Defense     : " + item.DeffensePoint);
+            Console.WriteLine("Sp. Attack  : " + item.SpAttack);
+            Console.WriteLine("Sp. Defense : " + item.SpDeffense);
+            Console.WriteLine("Speed       : " + item.Speed);
+            Console.WriteLine("=================================================\n");
+        }
 
         Console.WriteLine("\n\n");
         Console.WriteLine("Press any key to back to main menu ...");

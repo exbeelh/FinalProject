@@ -6,9 +6,9 @@ namespace FinalProject.Controllers;
 
 class PokemonController
 {
-    private readonly IPokemonRepository _repository;
+    private readonly IGeneralRepository<Pokemon> _repository;
 
-    public PokemonController(IPokemonRepository repository)
+    public PokemonController(IGeneralRepository<Pokemon> repository)
     {
         _repository = repository;
     }
@@ -70,7 +70,7 @@ class PokemonController
             Speed = speed
         };
 
-        _repository.CreateData(pokemon);
+        _repository.InsertData(pokemon);
 
         Console.WriteLine("Data has been added, press any key to continue ....");
         Console.ReadKey();
@@ -196,36 +196,25 @@ class PokemonController
     {
         Console.Write("Enter ID pokemon => ");
         var id = int.Parse(Console.ReadLine());
-        _repository.DeleteData(id);
-        Console.WriteLine($"Pokemon with id {id} has been remove from pokedex");
-        Console.ReadKey();
+        var status = _repository.DeleteData(id);
 
-        view.MainMenu();
+        if (status > 1)
+        {
+            Console.WriteLine($"Pokemon with id {id} has been remove from pokedex");
+            Console.ReadKey();
+            view.MainMenu();
+        }
     }
 
-    public void ShowDatabase()
+    public List<Pokemon> ShowDatabase()
     {
         var pokemon = _repository.GetAllData();
                 if (pokemon == null)
         {
             Console.WriteLine("Data is empty.");
         }
-        foreach (var item in pokemon)
-        {
-            Console.WriteLine("ID          : " + item.Id);
-            Console.WriteLine("Name        : " + item.Name);
-            Console.WriteLine("Height      : " + item.Height + "\"");
-            Console.WriteLine("Weight      : " + item.Weight + " lbs");
-            Console.WriteLine("Element     : " + item.Element);
-            Console.WriteLine("Abilities   : " + item.Abilities);
-            Console.WriteLine("HP          : " + item.Hp);
-            Console.WriteLine("Attack      : " + item.AttackPoint);
-            Console.WriteLine("Defense     : " + item.DeffensePoint);
-            Console.WriteLine("Sp. Attack  : " + item.SpAttack);
-            Console.WriteLine("Sp. Defense : " + item.SpDeffense);
-            Console.WriteLine("Speed       : " + item.Speed);
-            Console.WriteLine("=================================================\n");
-        }
+
+        return pokemon;
     }
 
     private string NullValidation(string name, string value)

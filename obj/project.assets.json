@@ -475,11 +475,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\iam\\source\\repos\\FinalProject\\FinalProject\\FinalProject.csproj",
+      "projectUniqueName": "C:\\Users\\iam\\source\\repos\\FinalProject\\FinalProject.csproj",
       "projectName": "FinalProject",
-      "projectPath": "C:\\Users\\iam\\source\\repos\\FinalProject\\FinalProject\\FinalProject.csproj",
+      "projectPath": "C:\\Users\\iam\\source\\repos\\FinalProject\\FinalProject.csproj",
       "packagesPath": "C:\\Users\\iam\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\iam\\source\\repos\\FinalProject\\FinalProject\\obj\\",
+      "outputPath": "C:\\Users\\iam\\source\\repos\\FinalProject\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\iam\\AppData\\Roaming\\NuGet\\NuGet.Config",
